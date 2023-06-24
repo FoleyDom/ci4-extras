@@ -78,7 +78,7 @@ class Blogs extends BaseController
         ]);
 
         return view('templates/global_header', ['title' => 'Create a news item'])
-            . view('news/success')
+            . view('blogs/success')
             . view('templates/global_footer');
 
         // return view('Templates/global_header', ['title' => 'Create a news item'])

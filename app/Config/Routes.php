@@ -35,7 +35,8 @@ $routes->get('/', 'Home::index');
 use App\Controllers\Blogs;
 use App\Controllers\Pages;
 
-$routes->match(['get', 'post'], 'news/create', [Blogs::class, 'create']);
+$routes->post('blogs/create', [Blogs::class, 'create']);
+$routes->get('news/create', [Blogs::class, 'create']);
 $routes->get('news/(:segment)', 'Blogs::view/$1');
 $routes->get('news', 'Blogs::index');
 $routes->get('pages', [Pages::class, 'index']);
