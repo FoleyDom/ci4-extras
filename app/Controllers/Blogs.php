@@ -45,25 +45,24 @@ class Blogs extends BaseController
     {
         helper('form');
 
-        // Checks whether the form has been submitted.
-        if (!$this->request->is('post'))
+        // Checks whether the form is submitted.
+        if (!$this->request->is('post')) 
         {
+            // The form is not submitted, so returns the form.
             return view('templates/global_header', ['title' => 'Create a news item'])
                 . view('blogs/create')
                 . view('templates/global_footer');
         }
 
-        $post = $this->request->getPost([
-            'title',
-            'body',
-        ]);
+        $post = $this->request->getPost(['title', 'body']);
 
-        // Checks whether the submitted data passed the validation rules.
-        if (!$this->validation($post, [
+         // Checks whether the submitted data passed the validation rules.
+         if (! $this->validateData($post, [
             'title' => 'required|max_length[255]|min_length[3]',
-            'body'  => 'required|max_length[255]|min_length[3]',
-        ]))
+            'body'  => 'required|max_length[5000]|min_length[10]',
+        ])) 
         {
+            // The validation fails, so returns the form.
             return view('templates/global_header', ['title' => 'Create a news item'])
                 . view('blogs/create')
                 . view('templates/global_footer');
@@ -78,9 +77,13 @@ class Blogs extends BaseController
             'body'  => $post['body'],
         ]);
 
-        return view('Templates/global_header', ['title' => 'Create a news item'])
-            . view('blogs/success')
-            . view('Templates/global_footer');
+        return view('templates/global_header', ['title' => 'Create a news item'])
+            . view('news/success')
+            . view('templates/global_footer');
+
+        // return view('Templates/global_header', ['title' => 'Create a news item'])
+        //     . view('blogs/success')
+        //     . view('Templates/global_footer');
 
         //! Sets a flash message to be displayed on the next page displayed.
         // session()->setFlashdata('success', 'News item created successfully.');
