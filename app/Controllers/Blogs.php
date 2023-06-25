@@ -123,15 +123,14 @@ class Blogs extends BaseController
     public function edit()
     {
         helper('form');
+
         $model = new BlogsModel();
 
         $id = $this->request->getUri()->getSegment(3);
 
         $data = [
             'news' => $model->getNews($id),
-            'title' => 'Edit news item',
-            'body' => $model->getNews($id)['body'],
-            
+            'title' => 'Edit a news item',
         ];
 
         if (empty($data['news']))
@@ -163,8 +162,7 @@ class Blogs extends BaseController
         }
 
         // Saves the submitted data to the database.
-        $model->save([
-            'id'    => $id,
+        $model->update($id, [
             'title' => $post['title'],
             'slug'  => url_title($post['title'], '-', true),
             'body'  => $post['body'],
@@ -178,6 +176,6 @@ class Blogs extends BaseController
         //! Sets a flash message to be displayed on the next page displayed.
         $session->setFlashdata($success);
 
-        return redirect()->to('/news'); 
+        return redirect()->to('/news');
     }
 }

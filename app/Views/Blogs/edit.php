@@ -1,6 +1,6 @@
 <h2><?= esc($title) ?></h2>
 
-<?= session()->getFlashdata('error') ?>
+<?php session()->setFlashdata('message', 'News item updated successfully.'); ?>
 <?= validation_list_errors() ?>
 
 <form action="/blogs/create" method="post">

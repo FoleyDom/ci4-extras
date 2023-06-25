@@ -62,4 +62,16 @@ class BlogsModel extends Model
             ->where(['slug' => $slug])
             ->delete();
     }
+
+    public function updateNews($slug = false)
+    {
+        if ($slug === false)
+        {
+            return $this->findAll();
+        }
+
+        return $this->asArray()
+            ->where(['slug' => $slug])
+            ->update();
+    }
 }
