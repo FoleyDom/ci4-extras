@@ -1,8 +1,6 @@
 <h2><?= esc($title) ?></h2>
-<p><a href="/news/create/">Create a new post</a></p>
+<p><a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/news/create/">Create a new post</a></p>
 <?php
-
-    use CodeIgniter\Session\Session;
 
  if(!empty($news) && is_array($news)): ?>
    <?php foreach($news as $news_item): ?>
@@ -10,10 +8,10 @@
       <div class="main">
          <?= esc($news_item['body']) ?>
       </div>
-      <p><a href="/news/<?= esc($news_item['slug'], 'url') ?>">View article</a></p>
+      <button class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500"><a href="/news/<?= esc($news_item['slug'], 'url') ?>">View article</a></button>
       <?php if (auth()->loggedIn()): ?>
-         <p><a href="/news/edit/<?= esc($news_item['slug'], 'url') ?>">Edit</a></p>
-         <p><a href="/news/delete/<?= esc($news_item['slug'], 'url') ?>">Delete</a></p>   
+         <a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/news/edit/<?= esc($news_item['slug'], 'url') ?>">Edit</a>
+         <a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/news/delete/<?= esc($news_item['slug'], 'url') ?>">Delete</a> 
       <?php endif; ?>
    <?php endforeach; ?>
 <?php else: ?>

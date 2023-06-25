@@ -26,6 +26,7 @@ class Blogs extends BaseController
         $data = [
             'news'  => $model->getNews(),
             'title' => 'News archive',
+            'tab_title' => 'News archive',
         ];
 
         echo view('templates/global_header', $data);
@@ -41,6 +42,7 @@ class Blogs extends BaseController
 
         $data = [
             'news' => $model->getNews($slug),
+            'tab_title' => 'News archive',
         ];
 
 
@@ -60,11 +62,15 @@ class Blogs extends BaseController
     {
         helper('form');
 
+        $data = [
+            'tab_title' => 'Create a news item',
+        ];
+
         // Checks whether the form is submitted.
         if (!$this->request->is('post')) 
         {
             // The form is not submitted, so returns the form.
-            return view('templates/global_header', ['title' => 'Create a news item'])
+            return view('templates/global_header', ['tab_title' => 'test title' ,'title' => 'Create a news item'])
                 . view('blogs/create')
                 . view('templates/global_footer');
         }
@@ -78,7 +84,7 @@ class Blogs extends BaseController
         ])) 
         {
             // The validation fails, so returns the form.
-            return view('templates/global_header', ['title' => 'Create a news item'])
+            return view('templates/global_header', ['tab_title' => 'test title' ,'title' => 'Create a news item'])
                 . view('blogs/create')
                 . view('templates/global_footer');
         }
@@ -131,6 +137,7 @@ class Blogs extends BaseController
         $data = [
             'news' => $model->getNews($id),
             'title' => 'Edit a news item',
+            'tab_title' => 'Edit a news item',
         ];
 
         if (empty($data['news']))
