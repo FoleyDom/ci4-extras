@@ -35,13 +35,15 @@ $routes->get('/', 'Home::index');
 use App\Controllers\Blogs;
 use App\Controllers\Pages;
 
+$routes->post('blogs/edit/(:segment)', 'Blogs::edit/$1');
 $routes->post('blogs/create', [Blogs::class, 'create']);
+$routes->get('news/edit/(:segment)', 'Blogs::edit/$1');
 $routes->get('news/create', [Blogs::class, 'create']);
 $routes->get('news/delete/(:segment)', 'Blogs::delete/$1');
 $routes->get('news/(:segment)', 'Blogs::view/$1');
 $routes->get('news/', 'Blogs::index');
 $routes->get('pages/', [Pages::class, 'index']);
-$routes->get('(:segment)', 'Pages::view/$1');
+//$routes->get('(:segment)', 'Pages::view/$1');
 
 
 service('auth')->routes($routes);

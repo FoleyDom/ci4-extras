@@ -9,6 +9,14 @@ use CodeIgniter\Session\Session;
 
 class Blogs extends BaseController
 {
+    protected $helpers = ['form', 'url'];
+
+    public function __construct()
+    {
+        $this->session = session();
+
+    }
+
     public function index()
     {
         
@@ -110,5 +118,66 @@ class Blogs extends BaseController
 
         $session->setFlashdata('success', 'News item deleted successfully.');
         return redirect()->to('/news');
+    }
+
+    public function edit()
+    {
+        helper('form');
+        $model = new BlogsModel();
+
+        $id = $this->request->getUri()->getSegment(3);
+
+        $data = [
+            'news' => $model->getNews($id),
+            'title' => 'Edit news item',
+            'body' => $model->getNews($id)['body'],
+            
+        ];
+
+        if (empty($data['news']))
+        {
+            throw new PageNotFoundException('Cannot find the news item: '. $id);
+        }
+
+        // Checks whether the form is submitted.
+        if (!$this->request->is('post')) 
+        {
+            // The form is not submitted, so returns the form.
+            return view('templates/global_header', $data)
+                . view('blogs/edit')
+                . view('templates/global_footer');
+        }
+
+        $post = $this->request->getPost(['title', 'body']);
+
+        // Checks whether the submitted data passed the validation rules.
+        if (! $this->validateData($post, [
+            'title' => 'required|max_length[255]|min_length[3]',
+            'body'  => 'required|max_length[5000]|min_length[10]',
+        ])) 
+        {
+            // The validation fails, so returns the form.
+            return view('templates/global_header', $data)
+                . view('blogs/edit')
+                . view('templates/global_footer');
+        }
+
+        // Saves the submitted data to the database.
+        $model->save([
+            'id'    => $id,
+            'title' => $post['title'],
+            'slug'  => url_title($post['title'], '-', true),
+            'body'  => $post['body'],
+        ]);
+
+        $session = \Config\Services::session();
+        $success = [
+            'message' => 'News item updated successfully.',
+        ];
+
+        //! Sets a flash message to be displayed on the next page displayed.
+        $session->setFlashdata($success);
+
+        return redirect()->to('/news'); 
     }
 }

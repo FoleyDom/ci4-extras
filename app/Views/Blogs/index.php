@@ -11,7 +11,7 @@
          <?= esc($news_item['body']) ?>
       </div>
       <p><a href="/news/<?= esc($news_item['slug'], 'url') ?>">View article</a></p>
-      <?php if (!session()->get('isLoggedIn')): ?>
+      <?php if (auth()->loggedIn()): ?>
          <p><a href="/news/edit/<?= esc($news_item['slug'], 'url') ?>">Edit</a></p>
          <p><a href="/news/delete/<?= esc($news_item['slug'], 'url') ?>">Delete</a></p>   
       <?php endif; ?>
