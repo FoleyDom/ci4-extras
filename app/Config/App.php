@@ -17,7 +17,7 @@ class App extends BaseConfig
      *
      *    http://example.com/
      */
-    public string $baseURL = 'http://localhost:8080/';
+    public $baseURL = null;
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
@@ -446,4 +446,23 @@ class App extends BaseConfig
      * @see http://www.w3.org/TR/CSP/
      */
     public bool $CSPEnabled = false;
-}
+
+   
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        switch ($_SERVER['CI_ENVIRONMENT']) {
+            case 'development':
+                $this->baseURL = 'https://localhost:8080';
+            break;
+            case 'production':
+                $this->baseURL = 'https://zealous-wave-ec7414bdb04b4a81901edcd02328368f.azurewebsites.net/';
+            break;
+    
+            default:
+                exit('The application environment is not set correctly.');
+        }
+    }
+}   
