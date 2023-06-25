@@ -50,4 +50,16 @@ class BlogsModel extends Model
             ->where(['slug' => $slug])
             ->first();
     }
+
+    public function deleteNews($slug = false)
+    {
+        if ($slug === false)
+        {
+            return $this->findAll();
+        }
+
+        return $this->asArray()
+            ->where(['slug' => $slug])
+            ->delete();
+    }
 }

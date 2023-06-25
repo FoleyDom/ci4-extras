@@ -37,9 +37,10 @@ use App\Controllers\Pages;
 
 $routes->post('blogs/create', [Blogs::class, 'create']);
 $routes->get('news/create', [Blogs::class, 'create']);
+$routes->get('news/delete/(:segment)', 'Blogs::delete/$1');
 $routes->get('news/(:segment)', 'Blogs::view/$1');
-$routes->get('news', 'Blogs::index');
-$routes->get('pages', [Pages::class, 'index']);
+$routes->get('news/', 'Blogs::index');
+$routes->get('pages/', [Pages::class, 'index']);
 $routes->get('(:segment)', 'Pages::view/$1');
 
 
