@@ -29,13 +29,10 @@ class Blogs extends BaseController
     {
         $session = \Config\Services::session();
 
-        $user = $session->get('user');
-
         $model = new BlogsModel();
 
         $data = [
             'news' => $model->getNews($slug),
-            'news' => $model->deleteNews($slug),
         ];
 
 
@@ -47,7 +44,7 @@ class Blogs extends BaseController
         $data['title'] = $data['news']['title'];
 
         return view('templates/global_header', $data)
-            . view('blogs/view', $data)
+            . view('blogs/view')
             . view('templates/global_footer');
     }
 
@@ -87,29 +84,31 @@ class Blogs extends BaseController
             'body'  => $post['body'],
         ]);
 
-        return view('Templates/global_header', ['title' => 'Create a news item'])
-            . view('blogs/success')
-            . view('Templates/global_footer');
+        // return view('Templates/global_header', ['title' => 'Create a news item'])
+        //     . view('blogs/success')
+        //     . view('Templates/global_footer');
 
-        // $session = \Config\Services::session();
-        // $success = [
-        //     'message' => 'News item created successfully.',
-        // ];
+        $session = \Config\Services::session();
+        $success = [
+            'message' => 'News item created successfully.',
+        ];
 
-        // //! Sets a flash message to be displayed on the next page displayed.
-        // $session->setFlashdata($success);
+        //! Sets a flash message to be displayed on the next page displayed.
+        $session->setFlashdata($success);
 
-        // return redirect()->to('/news'); 
+        return redirect()->to('/news'); 
         
     }
 
     public function delete()
     {
+        $session = \Config\Services::session();
         $model = new BlogsModel();
-        $id = $this->request->uri->getSegment(3);
+        $id = $this->request->getUri()->getSegment(3);
 
         $model->deleteNews($id);
 
+        $session->setFlashdata('success', 'News item deleted successfully.');
         return redirect()->to('/news');
     }
 }
