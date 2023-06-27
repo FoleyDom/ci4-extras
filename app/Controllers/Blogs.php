@@ -110,7 +110,7 @@ class Blogs extends BaseController
         //! Sets a flash message to be displayed on the next page displayed.
         $session->setFlashdata($success);
 
-        return redirect()->to('/news'); 
+        return redirect()->to('/'); 
         
     }
 
@@ -123,7 +123,7 @@ class Blogs extends BaseController
         $model->deleteNews($id);
 
         $session->setFlashdata('success', 'News item deleted successfully.');
-        return redirect()->to('/news');
+        return redirect()->to('/');
     }
 
     public function edit()
@@ -183,6 +183,6 @@ class Blogs extends BaseController
         //! Sets a flash message to be displayed on the next page displayed.
         $session->setFlashdata($success);
 
-        return redirect()->to('/news');
+        return redirect()->to('/');
     }
 }

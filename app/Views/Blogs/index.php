@@ -1,5 +1,5 @@
 <h2><?= esc($title) ?></h2>
-<p><a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/news/create/">Create a new post</a></p>
+<p><a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/blogs/create/">Create a new post</a></p>
 <?php
 
  if(!empty($news) && is_array($news)): ?>
@@ -8,10 +8,10 @@
       <div class="main">
          <?= esc($news_item['body']) ?>
       </div>
-      <button class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500"><a href="/news/<?= esc($news_item['slug'], 'url') ?>">View article</a></button>
+      <button class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500"><a href="/blogs/<?= esc($news_item['slug'], 'url') ?>">View article</a></button>
       <?php if (auth()->loggedIn()): ?>
-         <a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/news/edit/<?= esc($news_item['slug'], 'url') ?>">Edit</a>
-         <a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/news/delete/<?= esc($news_item['slug'], 'url') ?>">Delete</a> 
+         <a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/blogs/edit/<?= esc($news_item['slug'], 'url') ?>">Edit</a>
+         <a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/blogs/delete/<?= esc($news_item['slug'], 'url') ?>">Delete</a> 
       <?php endif; ?>
    <?php endforeach; ?>
 <?php else: ?>
