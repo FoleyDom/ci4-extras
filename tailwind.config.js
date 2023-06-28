@@ -3,5 +3,5 @@ export const content = ["./app/Views/*.php", "./app/Views/**/*.php", "./app/View
 export const theme = {
   extend: {},
 };
-export const plugins = [];
+export const plugins = [require('@tailwindcss/forms')];
 

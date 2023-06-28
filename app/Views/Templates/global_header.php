@@ -6,43 +6,44 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="<?= base_url('./css/output.css') ?>">
-   <title><?= esc($tab_title)?></title>
+   <title><?= esc($tab_title) ?></title>
 </head>
-<header aria-label="Site Header" class="shadow-sm">
-   <div class="mx-auto max-w-screen-xl p-4">
-      <div class="flex items-center justify-between gap-4 lg:gap-10">
-         <div class="flex lg:w-0 lg:flex-1">
-            <a href="/">
-               <span class="sr-only">Logo</span>
-               <span class="inline-block h-10 w-32 rounded-lg bg-gray-200"></span>
+<header class="text-gray-400 bg-gray-900 body-font">
+   <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+         <a href="/" class="mr-5 hover:text-white">Home</a>
+         <a class="mr-5 hover:text-white">Second Link</a>
+         <a class="mr-5 hover:text-white">Third Link</a>
+         <a class="hover:text-white">Fourth Link</a>
+      </nav>
+      <a href="/" class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-white lg:items-center lg:justify-center mb-4 md:mb-0">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-yellow-500 rounded-full" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+         </svg>
+         <span class="ml-3 text-xl xl:block lg:hidden">Blog-Space</span>
+      </a>
+      <?php if (auth()->loggedIn()) : ?>
+         <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+            <a href="/logout/">
+               <button class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mr-2">Logout
+               </button>
             </a>
          </div>
-         <nav aria-label="Site Nav" class="hidden gap-8 text-sm font-medium md:flex">
-            <a class="text-gray-500" href="/about">About</a>
-            <a class="text-gray-500" href="">Blog</a>
-            <a class="text-gray-500" href="/newsletter/sign-up">Newsletter</a>
-            <a class="text-gray-500" href="">Contact</a>
-         </nav>
-
-         <div class="hidden flex-1 items-center justify-end gap-4 sm:flex">
-            <a class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/login">
-               Log in
+      <?php else : ?>
+         <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+            <a href="/login/">
+               <button class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mr-2">Login
+               </button>
             </a>
-
-            <a class="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white" href="/register">
-               Sign up
+            <a href="/register/">
+               <button class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">Register
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                     <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+               </button>
             </a>
          </div>
-
-         <div class="lg:hidden">
-            <button class="rounded-lg bg-gray-100 p-2 text-gray-600" type="button">
-               <span class="sr-only">Open menu</span>
-               <svg aria-hidden="true" class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-               </svg>
-            </button>
-         </div>
-      </div>
-   </div>
+      <?php endif; ?>
 </header>
+
 <body>
