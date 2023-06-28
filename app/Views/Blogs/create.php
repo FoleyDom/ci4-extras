@@ -1,4 +1,5 @@
-<h2><?= esc($title) ?></h2>
+<section class="text-gray-400 bg-gray-900 body-font relative">
+<h2 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white"><?= esc($title) ?></h2>
 
 <?= session()->getFlashdata('error') ?>
 <?= validation_list_errors() ?>
@@ -6,13 +7,30 @@
 <form action="/blogs/create" method="post">
    <?= csrf_field() ?>
 
-   <label for="title">Title</label>
-   <input type="input" name="title" value="<?= set_value('title') ?>">
-   <br>
-
-   <label for="body">Text</label>
-   <textarea name="body" cols="45" rows="4"><?= set_value('body') ?></textarea>
-   <br>
-
-   <input type="submit" name="submit" value="Create news item">
+   
+      <div class="container px-5 py-24 mx-auto">
+         <div class="flex flex-col text-center w-full mb-12">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Create new post</h1>
+         </div>
+         <div class="lg:w-1/2 md:w-2/3 mx-auto">
+            <div class="flex flex-wrap -m-2">
+               <div class="p-2 w-full">
+                  <div class="relative">
+                     <label for="name" class="leading-7 text-sm text-gray-400">Title</label>
+                     <input type="text" id="title" name="title" placeholder="Title goes here..." class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value="<?= set_value('title') ?>">
+                  </div>
+               </div>
+               <div class="p-2 w-full">
+                  <div class="relative">
+                     <label for="body" class="leading-7 text-sm text-gray-400">Message</label>
+                     <textarea id="body" name="body" class="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-yellow-500 focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" placeholder="Your message here..."><?= set_value('body') ?></textarea>
+                  </div>
+               </div>
+               <div class="p-2 w-full">
+                  <input type="submit" name="submit" value="Create news item" class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
 </form>

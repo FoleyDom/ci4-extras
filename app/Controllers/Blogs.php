@@ -14,13 +14,10 @@ class Blogs extends BaseController
     public function __construct()
     {
         $this->session = session();
-
     }
 
     public function index()
     {
-        
-
         $model = new BlogsModel();
 
         $data = [
@@ -36,15 +33,12 @@ class Blogs extends BaseController
 
     public function view($slug = null)
     {
-        $session = \Config\Services::session();
-
         $model = new BlogsModel();
 
         $data = [
             'news' => $model->getNews($slug),
             'tab_title' => 'News archive',
         ];
-
 
         if (empty($data['news']))
         {
@@ -61,10 +55,6 @@ class Blogs extends BaseController
     public function create()
     {
         helper('form');
-
-        $data = [
-            'tab_title' => 'Create a news item',
-        ];
 
         // Checks whether the form is submitted.
         if (!$this->request->is('post')) 
@@ -102,13 +92,12 @@ class Blogs extends BaseController
         //     . view('blogs/success')
         //     . view('Templates/global_footer');
 
-        $session = \Config\Services::session();
         $success = [
             'message' => 'News item created successfully.',
         ];
 
         //! Sets a flash message to be displayed on the next page displayed.
-        $session->setFlashdata($success);
+        $this->session->setFlashdata($success);
 
         return redirect()->to('/'); 
         
@@ -116,13 +105,12 @@ class Blogs extends BaseController
 
     public function delete()
     {
-        $session = \Config\Services::session();
         $model = new BlogsModel();
         $id = $this->request->getUri()->getSegment(3);
 
         $model->deleteNews($id);
 
-        $session->setFlashdata('success', 'News item deleted successfully.');
+        $this->session->setFlashdata('success', 'News item deleted successfully.');
         return redirect()->to('/');
     }
 
@@ -175,13 +163,12 @@ class Blogs extends BaseController
             'body'  => $post['body'],
         ]);
 
-        $session = \Config\Services::session();
         $success = [
             'message' => 'News item updated successfully.',
         ];
 
         //! Sets a flash message to be displayed on the next page displayed.
-        $session->setFlashdata($success);
+        $this->session->setFlashdata($success);
 
         return redirect()->to('/');
     }
