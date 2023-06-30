@@ -17,12 +17,12 @@ class App extends BaseConfig
      *
      *    http://example.com/
      */
-    public string $baseURL;
+    public string $baseURL = 'http://dev.blog-space.local';
 
     public function __construct()
     {
         // This is the URL path to the project's root.
-        $this->baseURL = ($_SERVER['CI_ENVIRONMENT'] === 'development') ? 'http://localhost:8080/' : 'http://funproject.000.pe/public';
+        // $this->baseURL = ($_SERVER['CI_ENVIRONMENT'] === 'development') ? 'http://dev.blog-space.local' : 'http://dev.blog-space.local';
 
         // $this->baseURL = 'http://localhost:8080/';
     }

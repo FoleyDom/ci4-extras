@@ -30,18 +30,18 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Blogs::index');
+$routes->get('/', 'Home::index');
 
 use App\Controllers\Blogs;
 use App\Controllers\Pages;
 
-$routes->post('blogs/edit/(:segment)', 'Blogs::edit/$1');
-$routes->post('blogs/create', [Blogs::class, 'create']);
-$routes->get('blogs/edit/(:segment)', 'Blogs::edit/$1');
-$routes->get('blogs/create', [Blogs::class, 'create']);
-$routes->get('blogs/delete/(:segment)', 'Blogs::delete/$1');
-$routes->get('blogs/(:segment)', 'Blogs::view/$1');
-$routes->get('blogs/', 'Blogs::index');
+$routes->post('/blogs/edit/(:segment)', 'Blogs::edit/$1');
+$routes->post('/blogs/create', [Blogs::class, 'create']);
+$routes->get('/blogs/edit/(:segment)', 'Blogs::edit/$1');
+$routes->get('/blogs/create', [Blogs::class, 'create']);
+$routes->get('/blogs/delete/(:segment)', 'Blogs::delete/$1');
+$routes->get('/blogs/(:segment)', 'Blogs::view/$1');
+$routes->get('/blogs/', 'Blogs::index', ['filter' => 'auth']);
 $routes->get('pages/', [Pages::class, 'index']);
 //$routes->get('(:segment)', 'Pages::view/$1');
 
