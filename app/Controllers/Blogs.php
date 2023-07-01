@@ -48,7 +48,7 @@ class Blogs extends BaseController
         $data['title'] = $data['news']['title'];
 
         return view('templates/global_header', $data)
-            . view('blogs/view')
+            . view('blogs/view', $data)
             . view('templates/global_footer');
     }
 
@@ -99,7 +99,7 @@ class Blogs extends BaseController
         //! Sets a flash message to be displayed on the next page displayed.
         $this->session->setFlashdata($success);
 
-        return redirect()->to('/'); 
+        return redirect()->to('/blogs/'); 
         
     }
 
@@ -111,7 +111,7 @@ class Blogs extends BaseController
         $model->deleteNews($id);
 
         $this->session->setFlashdata('success', 'News item deleted successfully.');
-        return redirect()->to('/');
+        return redirect()->to('/blogs/');
     }
 
     public function edit()
@@ -170,6 +170,6 @@ class Blogs extends BaseController
         //! Sets a flash message to be displayed on the next page displayed.
         $this->session->setFlashdata($success);
 
-        return redirect()->to('/');
+        return redirect()->to('/blogs/');
     }
 }

@@ -11,8 +11,12 @@
 <header class="text-gray-400 bg-gray-900 body-font">
    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
       <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+         <?php if (auth()->loggedIn()): ?>
+         <a href="/blogs/" class="mr-5 hover:text-white">Blogs</a>
+         <?php else: ?>
          <a href="/" class="mr-5 hover:text-white">Home</a>
          <a href="/blogs/" class="mr-5 hover:text-white">Blog</a>
+         <?php endif; ?>
          <a class="mr-5 hover:text-white">Third Link</a>
          <a class="hover:text-white">Fourth Link</a>
       </nav>

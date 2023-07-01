@@ -2,7 +2,6 @@
 
 namespace Config;
 
-
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -35,16 +34,26 @@ $routes->get('/', 'Home::index');
 use App\Controllers\Blogs;
 use App\Controllers\Pages;
 
-$routes->post('/blogs/edit/(:segment)', 'Blogs::edit/$1');
-$routes->post('/blogs/create', [Blogs::class, 'create']);
-$routes->get('/blogs/edit/(:segment)', 'Blogs::edit/$1');
-$routes->get('/blogs/create', [Blogs::class, 'create']);
-$routes->get('/blogs/delete/(:segment)', 'Blogs::delete/$1');
-$routes->get('/blogs/(:segment)', 'Blogs::view/$1');
-$routes->get('/blogs/', 'Blogs::index', ['filter' => 'auth']);
+$routes->group('blogs', function ($routes) {
+    $routes->post('edit/(:segment)', 'Blogs::edit/$1');
+    $routes->post('create', [Blogs::class, 'create']);
+    $routes->get('edit/(:segment)', 'Blogs::edit/$1');
+    $routes->get('create/', 'Blogs::create');
+    $routes->get('delete/(:segment)', 'Blogs::delete/$1');
+    $routes->get('(:segment)/', 'Blogs::view/$1');
+    $routes->get('/', 'Blogs::index', ['filter' => 'auth']);
+});
+
+// $routes->post('/blogs/edit/(:segment)', 'Blogs::edit/$1');
+// $routes->post('/blogs/create', [Blogs::class, 'create']);
+
+// $routes->get('/blogs/edit/(:segment)', 'Blogs::edit/$1');
+// $routes->get('/blogs/create', [Blogs::class, 'create']);
+// $routes->get('/blogs/delete/(:segment)', 'Blogs::delete/$1');
+// $routes->get('/blogs/(:segment)', 'Blogs::view/$1');
+// $routes->get('/blogs/', 'Blogs::index', ['filter' => 'auth']);
 $routes->get('pages/', [Pages::class, 'index']);
 //$routes->get('(:segment)', 'Pages::view/$1');
-
 
 service('auth')->routes($routes);
 
