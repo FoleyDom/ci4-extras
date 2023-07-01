@@ -1,8 +1,8 @@
 <section class="text-gray-400 bg-gray-900 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="text-center mb-20">
-      <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-white mb-4">Raw Denim Heirloom Man Braid</h1>
-      <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug.</p>
+      <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-white mb-4">Mental Health Name Here</h1>
+      <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">With a hope this app can you feel better and become the best version of yourself.</p>
     </div>
     <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
       <div class="p-2 sm:w-1/2 w-full">
@@ -11,7 +11,7 @@
             <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
             <path d="M22 4L12 14.01l-3-3"></path>
           </svg>
-          <span class="title-font font-medium text-white">Authentic Cliche Forage</span>
+          <span class="title-font font-medium text-white">Mood tracking technology</span>
         </div>
       </div>
       <div class="p-2 sm:w-1/2 w-full">
@@ -20,7 +20,7 @@
             <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
             <path d="M22 4L12 14.01l-3-3"></path>
           </svg>
-          <span class="title-font font-medium text-white">Kinfolk Chips Snackwave</span>
+          <span class="title-font font-medium text-white">Journal to help track mood and feelings.</span>
         </div>
       </div>
       <div class="p-2 sm:w-1/2 w-full">
@@ -29,7 +29,7 @@
             <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
             <path d="M22 4L12 14.01l-3-3"></path>
           </svg>
-          <span class="title-font font-medium text-white">Coloring Book Ethical</span>
+          <span class="title-font font-medium text-white">Other Features coming soon...</span>
         </div>
       </div>
       <div class="p-2 sm:w-1/2 w-full">
@@ -38,7 +38,7 @@
             <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
             <path d="M22 4L12 14.01l-3-3"></path>
           </svg>
-          <span class="title-font font-medium text-white">Typewriter Polaroid Cray</span>
+          <span class="title-font font-medium text-white">blank</span>
         </div>
       </div>
       <div class="p-2 sm:w-1/2 w-full">
@@ -47,7 +47,7 @@
             <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
             <path d="M22 4L12 14.01l-3-3"></path>
           </svg>
-          <span class="title-font font-medium text-white">Pack Truffaut Blue</span>
+          <span class="title-font font-medium text-white">blank</span>
         </div>
       </div>
       <div class="p-2 sm:w-1/2 w-full">
@@ -56,10 +56,10 @@
             <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
             <path d="M22 4L12 14.01l-3-3"></path>
           </svg>
-          <span class="title-font font-medium text-white">The Catcher In The Rye</span>
+          <span class="title-font font-medium text-white">blank</span>
         </div>
       </div>
     </div>
-    <button class="flex mx-auto mt-16 text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">Button</button>
+    <button class="flex mx-auto mt-16 text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">Learn More</button>
   </div>
 </section>
