@@ -35,16 +35,14 @@
     </span>
   </div>
 </footer>
+
 <?php
-      if (isset($scripts)):
-         foreach ($scripts as $script):
-            echo $script;
-         endforeach;
-      else:
-   ?> 
-   <?php
-      endif;
-   ?>
-   
+if (isset($scripts)) :
+  foreach ($scripts as $script) :
+    echo $script;
+  endforeach;
+endif;
+?>
+
 </body>
 </html>
