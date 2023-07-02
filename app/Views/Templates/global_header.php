@@ -5,17 +5,18 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="<?=base_url('./css/output.css')?>">
-   <title><?=esc($tab_title)?></title>
+   <link rel="stylesheet" href="<?= base_url('./css/output.css') ?>">
+   <title><?= esc($tab_title) ?></title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <header class="text-gray-400 bg-gray-900 body-font">
    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
       <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
-         <?php if (auth()->loggedIn()): ?>
-         <a href="/blogs/" class="mr-5 hover:text-white">Home</a>
-         <?php else: ?>
-         <a href="/" class="mr-5 hover:text-white">Home</a>
-         <a href="/blogs/" class="mr-5 hover:text-white">Moods</a>
+         <?php if (auth()->loggedIn()) : ?>
+            <a href="/blogs/" class="mr-5 hover:text-white">Home</a>
+         <?php else : ?>
+            <a href="/" class="mr-5 hover:text-white">Home</a>
+            <a href="/blogs/" class="mr-5 hover:text-white">Moods</a>
          <?php endif; ?>
          <a class="mr-5 hover:text-white">Third Link</a>
          <a class="hover:text-white">Fourth Link</a>
@@ -26,14 +27,14 @@
          </svg>
          <span class="ml-3 text-xl xl:block lg:hidden">Blog-Space</span>
       </a>
-      <?php if (auth()->loggedIn()): ?>
+      <?php if (auth()->loggedIn()) : ?>
          <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
             <a href="/logout/">
                <button class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mr-2">Logout
                </button>
             </a>
          </div>
-      <?php else: ?>
+      <?php else : ?>
          <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
             <a href="/login/">
                <button class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 mr-2">Login
@@ -47,7 +48,7 @@
                </button>
             </a>
          </div>
-      <?php endif;?>
+      <?php endif; ?>
 </header>
 
 <body>
