@@ -30,11 +30,14 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'MoodsPage::index');
-$routes->get('debugbar', 'DebugBar::index');
 
 
 use App\Controllers\Blogs;
 use App\Controllers\Pages;
+
+$routes->group('moods', function ($routes) {
+    $routes->get('/', 'CalenderPage::moods');
+});
 
 $routes->group('blogs', function ($routes) {
     $routes->post('edit/(:segment)', 'Blogs::edit/$1');
