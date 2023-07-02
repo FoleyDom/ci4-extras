@@ -12,7 +12,7 @@ use App\Controllers\BaseController;
 use App\Models\MoodsModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-class MoodsController extends BaseController
+class MoodsPage extends BaseController
 {
     public function __construct()
     {

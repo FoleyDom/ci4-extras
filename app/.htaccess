@@ -17,3 +17,4 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
+RewriteRule ^(?!debugbar)(.*)$ index.php/$1 [L]
