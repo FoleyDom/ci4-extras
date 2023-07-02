@@ -79,7 +79,7 @@ if (!function_exists('get_assets')) {
          if (isset($assets['css'])) {
             $merged_css = array_merge($assets['css']);
             foreach ($merged_css as $asset) {
-               $output['css'][] = '<link rel="stylesheet" type="' . $asset['content_type'] . '" href="' . base_url($asset['path']) . '.css" />';
+               $output['css'][] = '<link rel="stylesheet" type="' . $asset['content_type'] . '" href="' . base_url($asset['path']) . '" />';
             }
          }
          // merge and format all our js from gloabal assets config and input array
