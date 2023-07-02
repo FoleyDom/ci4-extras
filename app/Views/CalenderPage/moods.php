@@ -1,117 +1,60 @@
-<!-- component -->
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-<script defer src="https://unpkg.com/alpinejs@3.2.1/dist/cdn.min.js"></script>
-<div class="w-full p-2 m-2 bg-gray-100 rounded-lg shadow">
-   <div class="flex flex-wrap justify-center" x-data="genCalendar()" x-init="hozirgivaqt()" x-cloak>
-      <div class="flex flex-wrap w-full h-12 p-1 m-1 text-xl font-bold bg-white rounded-lg shadow-lg">
-         <p class="w-1/3 p-1 text-center text-green-900 shadow-md cursor-pointer hover:text-green-600 hover:shadow-inner bg-gray-50 rounded-l-md" @click="year-=1 "><svg xmlns="http://www.w3.org/2000/svg" class="block w-6 h-8 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-            </svg></p>
-         <p class="w-1/3 p-1 text-center text-green-900 shadow-md cursor-pointer hover:text-green-600 hover:shadow-inner bg-gray-50" x-text="year"></p>
-         <p class="w-1/3 p-1 text-center text-green-900 shadow-md cursor-pointer hover:text-green-600 hover:shadow-inner bg-gray-50 rounded-r-md" @click="year+=1 "><svg xmlns="http://www.w3.org/2000/svg" class="block w-6 h-8 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg></p>
-      </div>
-      <template x-for="(month,index) in month_names">
-         <div class="p-1 m-1 font-sans bg-white rounded shadow-md lg:w-72 w-80 bg-blend-luminosity bg-gradient-to-b from-green-50 via-white to-green-50">
-            <p class="p-1 text-xl font-semibold text-center text-indigo-800" x-text="month"></p>
-            <div class="p-1 m-1">
-               <div class="grid grid-cols-7 font-semibold text-green-800 border-b-2">
-                  <template x-for="days in day_names">
-                     <div class="grid place-items-center" :class="{'text-red-600': days == 'Ya'}">
-                        <p x-text="days"></p>
-                     </div>
-                  </template>
+<!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/aspect-ratio'),
+    ],
+  }
+  ```
+-->
+<div class="bg-gray-100">
+   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
+         <h2 class="text-2xl font-bold text-gray-900">Collections</h2>
+
+         <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+            <div class="group relative">
+               <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                  <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg" alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug." class="h-full w-full object-cover object-center">
                </div>
-               <!-- calendar raqamlari bloki-->
-               <div class="grid grid-cols-7 gap-1 font-semibold text-center text-gray-800 ">
-                  <template x-for="kun in daysgenerater()[index]">
-                     <div :class="{' ring-green-400 ring-4 rounded-full': isbugun(kun,index) == true, 'text-red-600': isyakshanba(kun,index) == true , ' hover:bg-green-100': isbugun(kun,index) == false }">
-                        <p x-text="kun"></p>
-                     </div>
-                  </template>
+               <h3 class="mt-6 text-sm text-gray-500">
+                  <a href="#">
+                     <span class="absolute inset-0"></span>
+                     Desk and Office
+                  </a>
+               </h3>
+               <p class="text-base font-semibold text-gray-900">Work from home accessories</p>
+            </div>
+            <div class="group relative">
+               <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                  <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-edition-02.jpg" alt="Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant." class="h-full w-full object-cover object-center">
                </div>
-               <!-- calendar raqamlari bloki oxiri-->
+               <h3 class="mt-6 text-sm text-gray-500">
+                  <a href="#">
+                     <span class="absolute inset-0"></span>
+                     Self-Improvement
+                  </a>
+               </h3>
+               <p class="text-base font-semibold text-gray-900">Journals and note-taking</p>
+            </div>
+            <div class="group relative">
+               <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                  <img src="https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg" alt="Collection of four insulated travel bottles on wooden shelf." class="h-full w-full object-cover object-center">
+               </div>
+               <h3 class="mt-6 text-sm text-gray-500">
+                  <a href="#">
+                     <span class="absolute inset-0"></span>
+                     Travel
+                  </a>
+               </h3>
+               <p class="text-base font-semibold text-gray-900">Daily commute essentials</p>
             </div>
          </div>
-      </template>
+      </div>
    </div>
 </div>
-<script>
-   function genCalendar() {
-
-      return {
-         month_names: ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-         day_names: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
-         year: '',
-         days_of_month() {
-            kabisa = (yearin) => {
-               return (yearin % 4 === 0 && yearin % 100 !== 0 && yearin % 400 !== 0) || (yearin % 100 === 0 && yearin % 400 === 0)
-            };
-            fevral = (yearin) => {
-               return kabisa(yearin) ? 29 : 28
-            };
-            return [31, fevral(this.year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-         },
-         hafta(sol, ma) {
-            let haftakuni = new Date(sol, ma).getDay();
-            switch (haftakuni) { // hafta kuni Dushanbadan boshlangani uchun hak)
-               case 0:
-                  haftakuni = 6;
-                  break;
-               case 1:
-                  haftakuni = 0;
-                  break;
-               case 2:
-                  haftakuni = 1;
-                  break;
-               case 3:
-                  haftakuni = 2;
-                  break;
-               case 4:
-                  haftakuni = 3;
-                  break;
-               case 5:
-                  haftakuni = 4;
-                  break;
-               case 6:
-                  haftakuni = 5;
-                  break;
-               default:
-                  haftakuni = new Date(sol, ma).getDay()
-                  break;
-            }
-            return haftakuni;
-         },
-         daysgenerater() {
-            let days = [];
-            for (let k = 0; k < this.days_of_month().length; k++) {
-               days.push([]);
-               for (let i = 1; i <= this.days_of_month()[k]; i++) {
-                  if (days[k].length < this.hafta(this.year, k)) {
-                     i -= i;
-                     days[k].push('');
-                     continue;
-                  };
-                  days[k].push(i);
-               }
-            }
-            return days;
-         },
-         hozirgivaqt() {
-            let today = new Date();
-            this.year = today.getFullYear();
-         },
-         isbugun(kun, oy) {
-            const today = new Date();
-            const dayintable = new Date(this.year, oy, kun);
-            return today.toDateString() === dayintable.toDateString() ? true : false;
-         },
-         isyakshanba(kun, oy) {
-            const dayintable = new Date(this.year, oy, kun);
-            return dayintable.getDay() == 0 ? true : false;
-         }
-
-      }
-   }
-</script>

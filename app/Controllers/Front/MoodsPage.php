@@ -6,28 +6,25 @@
 
 // TODO: Journal to help track mood and feelings.(This will be a seperate page)
 
-namespace App\Controllers;
+namespace App\Controllers\Front;
 
 use App\Controllers\BaseController;
 use App\Models\MoodsModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-class CalenderPage extends BaseController
+class MoodsPage extends BaseController
 {
     public function __construct()
     {
         helper(['form', 'url', 'assets']);
         $this->session = session();
     }
-    
+
     public function index()
     {
-        //
-    }
-
-    public function moods()
-    {
         $model = new MoodsModel();
+
+        // Add assets using the assets helper
 
         // TODO: Add support for loading assets from a CDN
         // CSS assets
@@ -48,13 +45,29 @@ class CalenderPage extends BaseController
             'tab_title' => 'Home Page'
         ];
 
+        // ?: Figure out how to more efficiently display global header and footer.
+        echo view('templates/global_header', $data);
+        echo view('moodspage/index', $data);
+        echo view('templates/global_footer', $data);
+    }
+
+    public function moods()
+    {
+        $model = new MoodsModel();
+
+        // TODO: Calender that shows the mood for each day and allows the user to click on a day to see the journal entry for that day.
+
+        // TODO: Mood tracking technology(Color coded somehow, thinking drop down menu with values of moods equaling a color.)
+
+        // TODO: Journal to help track mood and feelings.(This will be a seperate page)
+
         $data = [
             'title' => 'Moods',
             'tab_title' => 'Moods'
         ];
 
         echo view('templates/global_header', $data);
-        echo view('calenderpage/moods', $data);
+        echo view('moods/moods', $data);
         echo view('templates/global_footer');
     }
 }

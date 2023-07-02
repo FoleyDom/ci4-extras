@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Front;
 
 use App\Controllers\BaseController;
 
-class TrackingController extends BaseController
+class JournalController extends BaseController
 {
     public function index()
     {

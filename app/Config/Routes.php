@@ -29,14 +29,23 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'MoodsPage::index');
 
-
+/*
+ * --------------------------------------------------------------------
+ * FRONTEND Route Definitions
+ * --------------------------------------------------------------------
+ */
 use App\Controllers\Blogs;
 use App\Controllers\Pages;
 
-$routes->group('moods', function ($routes) {
-    $routes->get('/', 'CalenderPage::moods');
+$routes->group('', ['namespace' => 'App\Controllers\Front'], function ($routes) {
+    $routes->get('/', 'MoodsPage::index');
+
+    // /moods/ routes
+    $routes->group('mood', function ($routes) {
+        $routes->get('/', 'CalenderPage::moods');
+        $routes->get('faq/', 'FAQPage::faq');
+    });
 });
 
 $routes->group('blogs', function ($routes) {
