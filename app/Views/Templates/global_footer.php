@@ -42,7 +42,7 @@ if (isset($scripts)) :
   endforeach;
 else :
 ?>
-<script type="text/javascript" src="/js/delete.js"></script>
+  <script type="text/javascript" src="<?= base_url('./js/global.js') ?>"></script>
 <?php
 endif;
 ?>

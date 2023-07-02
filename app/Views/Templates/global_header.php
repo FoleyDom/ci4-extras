@@ -14,8 +14,10 @@
    <?php
    endif;
    ?>
+   <!-- JQuery CDN -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+   <!-- Page Tittle -->
    <title><?= esc($tab_title) ?></title>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <header class="text-gray-400 bg-gray-900 body-font">
    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">

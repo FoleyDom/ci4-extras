@@ -1,3 +1,3 @@
-$().ready(function() {
-      console.log("delete.js loaded");
+$(document).ready(function() {
+      console.log("Hello from delete.js 1234");
 });
