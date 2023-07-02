@@ -77,9 +77,9 @@ if (!function_exists('get_assets')) {
       foreach ($assets_array as $type => $assets) {
          // merge and format all our css from gloabal assets config and input array
          if (isset($assets['css'])) {
-            $merged_css = array_merge($global_assets->assets['css'], $assets['css']);
+            $merged_css = array_merge($assets['css']);
             foreach ($merged_css as $asset) {
-               $output['css'][] = '<link rel="stylesheet" type="' . $asset['content_type'] . '" href="/' . $asset['path'] . '" />';
+               $output['css'][] = '<link rel="stylesheet" type="' . $asset['content_type'] . '" href="' . base_url($asset['path']) . '.css" />';
             }
          }
          // merge and format all our js from gloabal assets config and input array

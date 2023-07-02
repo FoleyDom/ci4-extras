@@ -35,14 +35,18 @@
     </span>
   </div>
 </footer>
-
 <?php
 if (isset($scripts)) :
   foreach ($scripts as $script) :
     echo $script;
   endforeach;
+else :
+?>
+<script type="text/javascript" src="/js/delete.js"></script>
+<?php
 endif;
 ?>
 
 </body>
+
 </html>

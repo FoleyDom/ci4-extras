@@ -19,12 +19,14 @@ class MoodsController extends BaseController
         $model = new MoodsModel();
 
         // Add assets using the assets helper
+        $css = add_assets(['output'], 'css');
         $js = add_assets(['delete.js'], 'js');
-        $assets = get_assets_output([$js]);
+        $assets = get_assets_output([$js, $css]);
 
         $data = [
             // Add assets to the data array
             'scripts' => $assets['js'],
+            'styles' => $assets['css'],
 
             'title' => 'Home Page',
             'tab_title' => 'Home Page'
