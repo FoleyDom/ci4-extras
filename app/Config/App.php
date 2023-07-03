@@ -17,10 +17,12 @@ class App extends BaseConfig
      *
      *    http://example.com/
      */
-    public string $baseURL = 'http://dev.blog-space.local';
+    public string $baseURL;
 
     public function __construct()
     {
+        $this->baseURL = ($_SESSION['CI_ENVIRONMENT'] == 'production') ? 'https://ci4-extras-production.up.railway.app/' : 'http://dev.blog-space.local';
+    
         // This is the URL path to the project's root.
         // $this->baseURL = ($_SERVER['CI_ENVIRONMENT'] === 'development') ? 'http://dev.blog-space.local' : 'http://dev.blog-space.local';
 
