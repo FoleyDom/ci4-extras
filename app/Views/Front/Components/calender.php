@@ -1,18 +1,12 @@
 <!-- This is an example component -->
 <div>
-   <style>
-      [x-cloak] {
-         display: none;
-      }
-   </style>
-
-   <div class="antialiased sans-serif bg-gray-100 h-screen">
+   <div class="antialiased sans-serif bg-gray-100">
       <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
          <div class="container mx-auto px-4 py-2 md:py-24">
 
-            <!-- <div class="font-bold text-gray-800 text-xl mb-4">
-				Schedule Tasks
-			</div> -->
+            <div class="font-bold text-gray-800 text-xl mb-4 place-items-center">
+               Keep track of your moods and everything else
+            </div>
 
             <div class="bg-white rounded-lg shadow overflow-hidden">
 
@@ -53,10 +47,7 @@
                         <div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r border-b relative">
                            <div @click="showEventModal(date)" x-text="date" class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100" :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }"></div>
                            <div style="height: 80px;" class="overflow-y-auto mt-1">
-                              <!-- <div 
-										class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-gray-700 text-white leading-none"
-										x-show="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"
-										x-text="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"></div> -->
+                              <div class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-gray-700 text-white leading-none" x-show="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length" x-text="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"></div>
 
                               <template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">
                                  <div class="px-2 py-1 rounded-lg mt-1 overflow-hidden border" :class="{
