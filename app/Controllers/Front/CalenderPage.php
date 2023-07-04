@@ -54,7 +54,7 @@ class CalenderPage extends BaseController
         ];
 
         echo view('templates/global_header', $data);
-        echo view('calenderpage/moods', $data);
+        echo view('front/calenderpage/moods', $data);
         echo view('templates/global_footer');
     }
 }

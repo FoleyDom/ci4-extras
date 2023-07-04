@@ -58,3 +58,7 @@
       </div>
    </div>
 </div>
+
+<?php
+echo view('front/components/calender.php');
+?>
