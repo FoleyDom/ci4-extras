@@ -43,4 +43,4 @@
       </div>
    </div>
 </div>
-<?php echo view('Components/contents.php') ?>
+<?php echo view('front/components/contents.php') ?>

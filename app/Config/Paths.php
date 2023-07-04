@@ -4,6 +4,7 @@ namespace Config;
 
 set_include_path(get_include_path() . PATH_SEPARATOR . '/app');
 
+set_include_path('.:/nix/store/hqpwbxx3071d5vb18vpza7qijgjdwyag-php-8.1.13/lib/php');
 
 /**
  * Paths

@@ -37,7 +37,7 @@ class FAQPage extends BaseController
         ];
 
         echo view('templates/global_header', $data);
-        echo view('faqpage/faq', $data);
+        echo view('front/faqpage/faq', $data);
         echo view('templates/global_footer', $data);
     }
 }

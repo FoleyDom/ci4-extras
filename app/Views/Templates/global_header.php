@@ -20,6 +20,6 @@
    <title><?= esc($tab_title) ?></title>
 </head>
 
-<?php echo view('Components/nav_bar.php') ?>
+<?php echo view('front/Components/nav_bar.php') ?>
 
 <body>

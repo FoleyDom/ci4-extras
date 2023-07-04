@@ -47,7 +47,7 @@ class MoodsPage extends BaseController
 
         // ?: Figure out how to more efficiently display global header and footer.
         echo view('templates/global_header', $data);
-        echo view('moodspage/index', $data);
+        echo view('front/moodspage/index', $data);
         echo view('templates/global_footer', $data);
     }
 
