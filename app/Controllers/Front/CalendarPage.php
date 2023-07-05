@@ -19,7 +19,7 @@ class CalendarPage extends BaseController
         helper(['form', 'url', 'assets']);
         $this->session = session();
     }
-    
+
     public function index()
     {
         //
@@ -59,13 +59,13 @@ class CalendarPage extends BaseController
 
     public function calendarAjax()
     {
-        $model = new MoodsModel();
+        if ($this->request->isAJAX()) 
+        {
+            $query = service('request')->getPost('event_data');
+            //var_dump($this->request->getPost('query'));
+            return json_encode(['success' => 'success', 'csrf' => csrf_hash(), 'query ' => $query]);
 
-        $data = [
-            'moods' => $model->getMoods(),
-            'events' => $model->getEvents()
-        ];
-
-        return json_encode($data);
+            $model = new MoodsModel();
+        }
     }
 }
