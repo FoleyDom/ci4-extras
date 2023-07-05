@@ -30,7 +30,7 @@ class MoodsPage extends BaseController
         // CSS assets
         $css = add_assets(['output.css'], 'css');
         // JS assets
-        $js = add_assets(['delete.js', 'global.js'], 'js');
+        $js = add_assets(['delete.js', 'global.js', 'calendar.js'], 'js');
         // Get the assets output
         $assets = get_assets_output([$js, $css]);
 

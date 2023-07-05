@@ -12,7 +12,7 @@ use App\Controllers\BaseController;
 use App\Models\MoodsModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-class CalenderPage extends BaseController
+class CalendarPage extends BaseController
 {
     public function __construct()
     {
@@ -29,11 +29,13 @@ class CalenderPage extends BaseController
     {
         $model = new MoodsModel();
 
+        // Add assets using the assets helper
+
         // TODO: Add support for loading assets from a CDN
         // CSS assets
         $css = add_assets(['output.css'], 'css');
         // JS assets
-        $js = add_assets(['delete.js', 'global.js'], 'js');
+        $js = add_assets(['global.js', 'calendar.js'], 'js');
         // Get the assets output
         $assets = get_assets_output([$js, $css]);
 
@@ -48,13 +50,22 @@ class CalenderPage extends BaseController
             'tab_title' => 'Home Page'
         ];
 
+        // ?: Figure out how to more efficiently display global header and footer.
+        echo view('templates/global_header', $data);
+        echo view('front/components/calendar', $data);
+        echo view('front/calendarpage/moods', $data);
+        echo view('templates/global_footer', $data);
+    }
+
+    public function calendarAjax()
+    {
+        $model = new MoodsModel();
+
         $data = [
-            'title' => 'Moods',
-            'tab_title' => 'Moods'
+            'moods' => $model->getMoods(),
+            'events' => $model->getEvents()
         ];
 
-        echo view('templates/global_header', $data);
-        echo view('front/calenderpage/moods', $data);
-        echo view('templates/global_footer');
+        return json_encode($data);
     }
 }

@@ -38,5 +38,41 @@ class MoodsModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-}
 
+
+    public function getMoods()
+    {
+        $model = new MoodsModel();
+
+        $moods = $model->findAll();
+
+        return $moods;
+    }
+
+    public function getEvents()
+    {
+        $model = new MoodsModel();
+
+        $events = $model->findAll();
+
+        return $events;
+    }
+
+    public function getMood($id = null)
+    {
+        $model = new MoodsModel();
+
+        $mood = $model->find($id);
+
+        return $mood;
+    }
+
+    public function getEvent($id = null)
+    {
+        $model = new MoodsModel();
+
+        $event = $model->find($id);
+
+        return $event;
+    }
+}
