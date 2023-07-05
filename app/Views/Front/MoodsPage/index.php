@@ -2,7 +2,6 @@
   <div class="container px-5 py-24 mx-auto">
     <div class="text-center mb-20">
       <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-white mb-4">Mental Health Name Here</h1>
-      <?php echo view('components/contents.php') ?>
       <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">With a hope this app can you feel better and become the best version of yourself.</p>
     </div>
     <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">

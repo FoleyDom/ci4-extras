@@ -43,8 +43,9 @@ $routes->group('', ['namespace' => 'App\Controllers\Front'], function ($routes) 
 
     // /moods/ routes
     $routes->group('mood', function ($routes) {
-        $routes->get('/', 'CalenderPage::moods');
+        $routes->get('/', 'CalendarPage::moods');
         $routes->get('faq/', 'FAQPage::faq');
+        
     });
 });
 
