@@ -40,12 +40,14 @@ use App\Controllers\Pages;
 
 $routes->group('', ['namespace' => 'App\Controllers\Front'], function ($routes) {
     $routes->get('/', 'MoodsPage::index');
+    $routes->post('mood/ajax/calendar/', 'CalendarPage::calendarAjax');
+    $routes->get('mood/ajax/calendar/', 'CalendarPage::calendarAjax');
 
     // /moods/ routes
     $routes->group('mood', function ($routes) {
         $routes->get('/', 'CalendarPage::moods');
         $routes->get('faq/', 'FAQPage::faq');
-        $routes->post('ajax/calendar/', 'CalendarPage::calendarAjax');
+        
     });
 });
 

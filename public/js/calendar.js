@@ -61,12 +61,22 @@ function app() {
             alert("Event Title cannot be empty.");
             return;
          }
+
+         let eventData = {
+            event_date: this.event_date,
+            event_title: this.event_title,
+            event_theme: this.event_theme
+         };
+
+         events_Array = [];
+         events_Array.push([this.event_date, this.event_title, this.event_theme])
          this.events.push({
             event_date: this.event_date,
             event_title: this.event_title,
             event_theme: this.event_theme
          });
-         console.log(this.events);
+         console.log(eventData);
+
          // clear the form data
          this.event_title = '';
          this.event_date = '';
@@ -74,9 +84,22 @@ function app() {
          //close the modal
          this.openEventModal = false;
 
-         saveEventToDatabase(
-            this.events[0]
-         );
+         $.ajax({
+            url: 'http://dev.blog-space.local/mood/ajax/calendar/', // Set the correct URL for your CodeIgniter controller method
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            type: 'POST',
+            dataType: 'json',
+            data: eventData,
+            success: function (data) {
+               // Handle the response from the server
+               alert('Success');
+               $("input[name='input-text']").val(data.csrf);
+            },
+            error: function (error) {
+               console.error('Error:', error);
+               alert('Error');
+            }
+         })
       },
 
       getNoOfDays() {
@@ -96,74 +119,41 @@ function app() {
       },
    }
 
-   function saveEventToDatabase(event_data) 
-   {
-      fetch('mood/ajax/calendar/', 
-      {
-         method: 'POST',
-         headers: 
-         {
-            'Content-Type': 'application/json',
-         },
-         body: JSON.stringify(event_data),
-      })
-         .then(response => 
-         {
-            if (!response.ok) 
-            {
-               throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-         })
-         .then(data => 
-         {
-            // Handle the response from the server
-            alert('Success');
-            $("input[name='input-text']").val(data.csrf);
-         })
-         .catch(error => 
-         {
-            console.error('Error:', error);
-            alert('Error');
-         });
+   // $.ajax({
+   //    url: 'http://dev.blog-space.local/mood/ajax/calendar/',
+   //    type: 'post',
+   //    cache: false,
+   //    dataType: 'json',
+   //    data: {
+   //       'event_date': eventData.event_date,
+   //       'event_title': eventData.event_title,
+   //       'event_theme': eventData.event_theme,
+   //    },
+   //    success: function (data) {
+   //       var result = JSON.parse(data);
+   //       alert('Success');
+   //       $("input[name='input-text']").val(result['csrf']);
+   //    },
+   //    error: function () {
+   //       alert('Error');
+   //    }
+   // });
 
 
-      // $.ajax({
-      //    url: 'http://dev.blog-space.local/mood/ajax/calendar/',
-      //    type: 'post',
-      //    cache: false,
-      //    dataType: 'json',
-      //    data: {
-      //       'event_date': eventData.event_date,
-      //       'event_title': eventData.event_title,
-      //       'event_theme': eventData.event_theme,
-      //    },
-      //    success: function (data) {
-      //       var result = JSON.parse(data);
-      //       alert('Success');
-      //       $("input[name='input-text']").val(result['csrf']);
-      //    },
-      //    error: function () {
-      //       alert('Error');
-      //    }
-      // });
-
-
-      // Replace this with your actual API endpoint and AJAX code to save data to the server
-      //    $.ajax('/mood/ajax/calendar/', {
-      //       method: 'POST',
-      //       headers: {
-      //          'Content-Type': 'application/json'
-      //       },
-      //       body: JSON.stringify(eventData)
-      //    }).then(response => {
-      //       if (response.ok) {
-      //          console.log('Event saved successfully to the database.');
-      //       } else {
-      //          console.error('Failed to save event to the database.');
-      //       }
-      //    }).catch(error => {
-      //       console.error('Error occurred while saving event to the database:', error);
-      //    });
-   }
+   // Replace this with your actual API endpoint and AJAX code to save data to the server
+   //    $.ajax('/mood/ajax/calendar/', {
+   //       method: 'POST',
+   //       headers: {
+   //          'Content-Type': 'application/json'
+   //       },
+   //       body: JSON.stringify(eventData)
+   //    }).then(response => {
+   //       if (response.ok) {
+   //          console.log('Event saved successfully to the database.');
+   //       } else {
+   //          console.error('Failed to save event to the database.');
+   //       }
+   //    }).catch(error => {
+   //       console.error('Error occurred while saving event to the database:', error);
+   //    });
 }

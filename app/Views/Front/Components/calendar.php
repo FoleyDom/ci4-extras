@@ -85,7 +85,7 @@
 
                   <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Add Event Details</h2>
 
-                  <form id="saveEvent" onsubmit="saveEventToDatabase()" method="post">
+                  <form method="post" @submit.prevent="addEvent()"">
                      <div class="mb-4">
                         <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Event title</label>
                         <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="event_title" id="event_title" name="input-text" required>
@@ -117,7 +117,7 @@
                         <button type="button" class="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="openEventModal = !openEventModal">
                            Cancel
                         </button>
-                        <button type="button" onsubmit="saveEventToDatabase()" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="addEvent()">
+                        <button type="submit" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="addEvent()">
                            Save Event
                         </button>
                      </div>

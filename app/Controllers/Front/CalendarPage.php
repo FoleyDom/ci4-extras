@@ -61,11 +61,16 @@ class CalendarPage extends BaseController
     {
         if ($this->request->isAJAX()) 
         {
-            $query = service('request')->getPost('event_data');
-            //var_dump($this->request->getPost('query'));
-            return json_encode(['success' => 'success', 'csrf' => csrf_hash(), 'query ' => $query]);
-
+            $query = $this->request->getPost();
+            // var_dump($this->request->getPost('query'));
             $model = new MoodsModel();
+            // Perform necessary operations using $model
+
+            return json_encode(['success' => 'success', 'csrf' => csrf_hash(), 'query' => $query]);
+        } 
+        else 
+        {
+            return json_encode(['error' => 'error', 'csrf' => csrf_hash()]);
         }
     }
 }
