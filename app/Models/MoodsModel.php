@@ -58,21 +58,12 @@ class MoodsModel extends Model
         return $events;
     }
 
-    public function getMood($id = null)
+    public function postEvent($id = null)
     {
         $model = new MoodsModel();
 
-        $mood = $model->find($id);
+        $events = $model->save($id);
 
-        return $mood;
-    }
-
-    public function getEvent($id = null)
-    {
-        $model = new MoodsModel();
-
-        $event = $model->find($id);
-
-        return $event;
+        return $events;
     }
 }

@@ -1,8 +1,7 @@
 const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-function app() 
-{
+function app() {
    return {
       month: '',
       year: '',
@@ -37,41 +36,47 @@ function app()
 
       openEventModal: false,
 
-      initDate() 
-      {
+      initDate() {
          let today = new Date();
          this.month = today.getMonth();
          this.year = today.getFullYear();
          this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
       },
 
-      isToday(date) 
-      {
+      isToday(date) {
          const today = new Date();
          const d = new Date(this.year, this.month, date);
          return today.toDateString() === d.toDateString() ? true : false;
       },
 
-      showEventModal(date) 
-      {
+      showEventModal(date) {
          // open the modal
          this.openEventModal = true;
          this.event_date = new Date(this.year, this.month, date).toDateString();
       },
 
-      addEvent() 
-      {
+      addEvent() {
          event.preventDefault();
          if (this.event_title == '') {
             alert("Event Title cannot be empty.");
             return;
          }
+
+         let eventData = {
+            event_date: this.event_date,
+            event_title: this.event_title,
+            event_theme: this.event_theme
+         };
+
+         events_Array = [];
+         events_Array.push([this.event_date, this.event_title, this.event_theme])
          this.events.push({
             event_date: this.event_date,
             event_title: this.event_title,
             event_theme: this.event_theme
          });
-         console.log(this.events);
+         console.log(eventData);
+
          // clear the form data
          this.event_title = '';
          this.event_date = '';
@@ -79,13 +84,25 @@ function app()
          //close the modal
          this.openEventModal = false;
 
-         saveEventToDatabase({
-            event_data: this.events
-         });
+         $.ajax({
+            url: 'http://dev.blog-space.local/mood/ajax/calendar/', // Set the correct URL for your CodeIgniter controller method
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            type: 'POST',
+            dataType: 'json',
+            data: eventData,
+            success: function (data) {
+               // Handle the response from the server
+               alert('Success');
+               $("input[name='input-text']").val(data.csrf);
+            },
+            error: function (error) {
+               console.error('Error:', error);
+               alert('Error');
+            }
+         })
       },
 
-      getNoOfDays() 
-      {
+      getNoOfDays() {
          let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
          // find where to start calendar day of week
          let dayOfWeek = new Date(this.year, this.month).getDay();
@@ -102,24 +119,41 @@ function app()
       },
    }
 
-   function saveEventToDatabase(eventData) 
-   {
-      // Replace this with your actual API endpoint and AJAX code to save data to the server
-      fetch('/mood/ajax/calendar/', {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(eventData)
-      }).then(response => {
-         if (response.ok) {
-            console.log('Event saved successfully to the database.');
-         } else {
-            console.error('Failed to save event to the database.');
-         }
-      }).catch(error => {
-         console.error('Error occurred while saving event to the database:', error);
-      });
-   }
+   // $.ajax({
+   //    url: 'http://dev.blog-space.local/mood/ajax/calendar/',
+   //    type: 'post',
+   //    cache: false,
+   //    dataType: 'json',
+   //    data: {
+   //       'event_date': eventData.event_date,
+   //       'event_title': eventData.event_title,
+   //       'event_theme': eventData.event_theme,
+   //    },
+   //    success: function (data) {
+   //       var result = JSON.parse(data);
+   //       alert('Success');
+   //       $("input[name='input-text']").val(result['csrf']);
+   //    },
+   //    error: function () {
+   //       alert('Error');
+   //    }
+   // });
 
+
+   // Replace this with your actual API endpoint and AJAX code to save data to the server
+   //    $.ajax('/mood/ajax/calendar/', {
+   //       method: 'POST',
+   //       headers: {
+   //          'Content-Type': 'application/json'
+   //       },
+   //       body: JSON.stringify(eventData)
+   //    }).then(response => {
+   //       if (response.ok) {
+   //          console.log('Event saved successfully to the database.');
+   //       } else {
+   //          console.error('Failed to save event to the database.');
+   //       }
+   //    }).catch(error => {
+   //       console.error('Error occurred while saving event to the database:', error);
+   //    });
 }
