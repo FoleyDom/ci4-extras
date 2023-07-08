@@ -58,11 +58,11 @@ class MoodsModel extends Model
         return $events;
     }
 
-    public function postEvent($id = null)
+    public function postEvent($date = null)
     {
         $model = new MoodsModel();
 
-        $events = $model->save($id);
+        $events = $model->save($data);
 
         return $events;
     }

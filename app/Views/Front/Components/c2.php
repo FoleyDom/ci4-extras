@@ -1,198 +1,84 @@
-<section class="p-8">
-   <div id="app" class="max-w-lg mx-auto">
-      <h1 class="text-2xl font-bold mb-4">Calendar App</h1>
-      <div class="flex items-center mb-4">
-         <button onclick="prevMonth()" class="mr-2 px-2 py-1 border rounded">Previous Month</button>
-         <span id="currentMonth" class="font-bold"></span>
-         <button onclick="nextMonth()" class="ml-2 px-2 py-1 border rounded">Next Month</button>
+<div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+   <div class="sm:hidden">
+      <label for="tabs" class="sr-only">Select tab</label>
+      <select id="tabs" class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+         <option>Calendar</option>
+         <option>How are you feeling?</option>
+         <option>FAQ</option>
+      </select>
+   </div>
+   <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400" id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
+      <li class="w-full">
+         <button id="stats-tab" data-tabs-target="#stats" type="button" role="tab" aria-controls="stats" aria-selected="true" class="inline-block w-full p-4 rounded-tl-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Calendar</button>
+      </li>
+      <li class="w-full">
+         <button id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">How are you feeling?</button>
+      </li>
+      <li class="w-full">
+         <button id="faq-tab" data-tabs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false" class="inline-block w-full p-4 rounded-tr-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">FAQ</button>
+      </li>
+   </ul>
+   <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600">
+      <div class="hidden p-4 bg-gray-600 rounded-lg md:p-8 dark:bg-gray-800" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+         <!-- slider component -->
+        <?php echo view('front/Components/slider') ?>
+
       </div>
-      <table class="w-full border-collapse">
-         <thead>
-            <tr>
-               <th class="border p-2">Sunday</th>
-               <th class="border p-2">Monday</th>
-               <th class="border p-2">Tuesday</th>
-               <th class="border p-2">Wednesday</th>
-               <th class="border p-2">Thursday</th>
-               <th class="border p-2">Friday</th>
-               <th class="border p-2">Saturday</th>
-            </tr>
-         </thead>
-         <tbody id="calendarBody"></tbody>
-      </table>
-      <div id="eventModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
-         <div class="bg-white rounded p-4 w-96">
-            <h2 class="text-xl font-bold mb-4">Add Event</h2>
-            <form onsubmit="addEvent(event)">
-               <input type="text" id="eventTitle" class="block w-full border p-2 mb-2" placeholder="Event Title" required>
-               <input type="date" id="eventDate" class="block w-full border p-2 mb-2" required>
-               <select id="eventTheme" class="block w-full border p-2 mb-4">
-                  <option value="blue">Blue Theme</option>
-                  <option value="red">Red Theme</option>
-                  <option value="yellow">Yellow Theme</option>
-                  <option value="green">Green Theme</option>
-                  <option value="purple">Purple Theme</option>
-               </select>
-               <div class="flex justify-end">
-                  <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Add Event</button>
-                  <button type="button" onclick="closeEventModal()" class="ml-2 px-4 py-2 bg-gray-500 text-white rounded">Cancel</button>
+      <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="about" role="tabpanel" aria-labelledby="about-tab">
+         <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">Tell us how you're feeling</h2>
+         <!-- List -->
+         <?php echo view('front/Components/c2form') ?>
+      </div>
+      <div class="hidden p-4 bg-white rounded-lg dark:bg-gray-800" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+         <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
+            <h2 id="accordion-flush-heading-1">
+               <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
+                  <span>What is Flowbite?</span>
+                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                  </svg>
+               </button>
+            </h2>
+            <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
+               <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                  <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="/docs/getting-started/introduction/" class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
                </div>
-            </form>
+            </div>
+            <h2 id="accordion-flush-heading-2">
+               <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-2" aria-expanded="false" aria-controls="accordion-flush-body-2">
+                  <span>Is there a Figma file available?</span>
+                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                  </svg>
+               </button>
+            </h2>
+            <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
+               <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.</p>
+                  <p class="text-gray-500 dark:text-gray-400">Check out the <a href="https://flowbite.com/figma/" class="text-blue-600 dark:text-blue-500 hover:underline">Figma design system</a> based on the utility classes from Tailwind CSS and components from Flowbite.</p>
+               </div>
+            </div>
+            <h2 id="accordion-flush-heading-3">
+               <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-3" aria-expanded="false" aria-controls="accordion-flush-body-3">
+                  <span>What are the differences between Flowbite and Tailwind UI?</span>
+                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                  </svg>
+               </button>
+            </h2>
+            <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
+               <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
+                  <ul class="pl-5 text-gray-500 list-disc dark:text-gray-400">
+                     <li><a href="https://flowbite.com/pro/" class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
+                     <li><a href="https://tailwindui.com/" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
+                  </ul>
+               </div>
+            </div>
          </div>
       </div>
    </div>
-   <script>
-      document.addEventListener("DOMContentLoaded", function() {
-   const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-   const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-   let month = '';
-   let year = '';
-   let no_of_days = [];
-   let blankdays = [];
-   let events = [];
-
-   const app = document.getElementById('app');
-   const currentMonthElement = document.getElementById('currentMonth');
-   const calendarBody = document.getElementById('calendarBody');
-   const eventModal = document.getElementById('eventModal');
-   const eventTitleInput = document.getElementById('eventTitle');
-   const eventDateInput = document.getElementById('eventDate');
-   const eventThemeInput = document.getElementById('eventTheme');
-
-   function initDate() {
-      let today = new Date();
-      month = today.getMonth();
-      year = today.getFullYear();
-      currentMonthElement.textContent = `${MONTH_NAMES[month]} ${year}`;
-   }
-
-   function isToday(date) {
-      const today = new Date();
-      const d = new Date(year, month, date);
-      return today.toDateString() === d.toDateString();
-   }
-
-   function showEventModal(date) {
-      eventDateInput.value = new Date(year, month, date).toISOString().slice(0, 10);
-      eventModal.style.display = 'block';
-   }
-
-   function closeEventModal() {
-      eventModal.style.display = 'none';
-   }
-
-   function addEvent(event) {
-      event.preventDefault();
-      const eventTitle = eventTitleInput.value;
-      const eventDate = new Date(eventDateInput.value);
-      const eventTheme = eventThemeInput.value;
-
-      if (eventTitle === '') {
-         alert("Event Title cannot be empty.");
-         return;
-      }
-
-      const newEvent = {
-         event_date: eventDate,
-         event_title: eventTitle,
-         event_theme: eventTheme
-      };
-
-      saveEventToDatabase(newEvent);
-      events.push(newEvent);
-
-      closeEventModal();
-      renderCalendar();
-   }
-
-   function saveEventToDatabase(eventData) {
-      // Replace this with your actual API endpoint and AJAX code to save data to the server
-      fetch('your-api-endpoint-url', {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(eventData)
-      }).then(response => {
-         if (response.ok) {
-            console.log('Event saved successfully to the database.');
-         } else {
-            console.error('Failed to save event to the database.');
-         }
-      }).catch(error => {
-         console.error('Error occurred while saving event to the database:', error);
-      });
-   }
-   function getNoOfDays() {
-      let daysInMonth = new Date(year, month + 1, 0).getDate();
-      let dayOfWeek = new Date(year, month).getDay();
-      let blankdaysArray = [];
-      for (let i = 1; i <= dayOfWeek; i++) {
-        blankdaysArray.push(i);
-      }
-      let daysArray = [];
-      for (let i = 1; i <= daysInMonth; i++) {
-        daysArray.push(i);
-      }
-      blankdays = blankdaysArray;
-      no_of_days = daysArray;
-    }
-  
-    function renderCalendar() {
-      initDate();
-      getNoOfDays();
-  
-      let daysInMonth = new Date(year, month + 1, 0).getDate();
-      let dayOfWeek = new Date(year, month).getDay();
-      let prevMonthDays = new Date(year, month, 0).getDate();
-      let days = [...Array(daysInMonth + 1).keys()].slice(1);
-      let prevMonthDaysArr = [...Array(dayOfWeek).keys()].map((i) => prevMonthDays - i);
-      days = [...prevMonthDaysArr, ...days];
-      let weeks = [];
-      let week = [];
-      days.forEach((day, index) => {
-        if (index % 7 === 0 && index > 0) {
-          weeks.push(week);
-          week = [];
-        }
-        week.push(day);
-        if (index === days.length - 1) {
-          weeks.push(week);
-        }
-      });
-  
-      calendarBody.innerHTML = '';
-      weeks.forEach((week) => {
-        const row = document.createElement('tr');
-        week.forEach((day) => {
-          const cell = document.createElement('td');
-          if (day) {
-            const dayElement = document.createElement('span');
-            dayElement.textContent = day;
-            cell.appendChild(dayElement);
-            if (isToday(day)) {
-              cell.classList.add('today');
-            }
-            events.forEach((event) => {
-              const eventDate = new Date(event.event_date);
-              if (eventDate.getDate() === day && eventDate.getMonth() === month && eventDate.getFullYear() === year) {
-                const eventDiv = document.createElement('div');
-                eventDiv.textContent = event.event_title;
-                eventDiv.style.backgroundColor = event.event_theme;
-                eventDiv.classList.add('event');
-                cell.appendChild(eventDiv);
-              }
-            });
-            cell.addEventListener('click', () => showEventModal(day));
-          }
-          row.appendChild(cell);
-        });
-        calendarBody.appendChild(row);
-      });
-    }
-  
-    renderCalendar();
-  });
-   </script>
-</section>
+</div>
